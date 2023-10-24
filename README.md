@@ -1,4 +1,4 @@
-Redis Course
+# Redis Course
 
 - To start redis use `redis-server` command
 - To connect to redis server or create a redis client via terminal use `redis-cli` command
@@ -16,6 +16,23 @@ Redis Course
     - And more
 - IMPORTANT: The data can only be retrieved if we know the exact key used to store it
 - a key means is a way to store and retrieve values.
-- $ `SET key value` // to set the value for key
-- $ `GET key value` // to get the value for key
-- To delete a key use DEL command, syntax - `DEL key1 key2`
+
+### to set the value for key
+```
+SET key value
+``` 
+
+### to get the value for key
+```
+GET key value
+``` 
+
+### To delete a key use DEL command
+```
+DEL key1 key2
+```
+
+### How to check if keys exists or not
+```
+exists key1 key2
+```
