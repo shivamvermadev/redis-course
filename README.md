@@ -17,6 +17,7 @@
 - IMPORTANT: The data can only be retrieved if we know the exact key used to store it
 - a key means is a way to store and retrieve values.
 
+---
 ### To set the value for key
 ```
 SET key value
@@ -118,3 +119,41 @@ KEYS pattern
 - h`[ae]`llo matches hello or hallo, but not hillo, either a or e
 - h`[^e]`llo matches hallo, hbllo... but not hello
 - h`[a-c]`llo matches hallo, hbllo, hcllo, from a to c
+
+### Saving keys information on server
+- To save keys on the disk we can use the below command
+```
+SHUTDOWN save
+```
+- To not save the keys on the disk for current redis session
+```
+SHUTDOWN nosave
+```
+
+### Rename a key
+- Renames key to newkey. It returns an error when key does not exist. If newkey already exists it is overwritten, when this happens RENAME executes an implicit DEL operation, so if the deleted key contains a very big value it may cause high latency even if RENAME itself is usually a constant-time operation.
+
+- In Cluster mode, both key and newkey must be in the same hash slot, meaning that in practice only keys that have the same hash tag can be reliably renamed in cluster.
+```
+RENAME key newkey
+```
+
+### Rename a key with caution
+- Renames key to newkey if newkey does not yet exist. It returns an error when key does not exist.
+- Return : Integer :
+    - 1 if key was renamed to newkey.
+    - 0 if newkey already exists.
+
+### Deleting keys Asynchronously via UNLINK
+- When we do ` DEL k1 k2 ` system first deletes k1, waits for it to get deleted and then start deleting k2 and then gives control back on the terminal, which means DEL operation deletes the keys synchronously
+- To delete keys asynchronously use `UNLINK` command, it will do the things in background.
+
+### How to find the data type of value hold by a key
+```
+TYPE key
+```
+---
+
+## Redis Data Types
+
+### String
