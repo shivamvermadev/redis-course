@@ -157,3 +157,101 @@ TYPE key
 ## Redis Data Types
 
 ### String
+
+### Counting Numbers using INCR and DECR
+- To increment number by 1 use INCR command, provided value of key should be integer parsable
+```
+INCR key
+```
+- To decrement number by 1 use DECR command, provided value of key should be integer parsable
+```
+DECR key
+```
+
+- To increase the number by `X` use INCRBY command, provided value of key should be integer parsable
+```
+INCRBY key X
+```
+
+- To decrease the number by `X` use DECRBY command, provided value of key should be integer parsable
+```
+DECRBY key X
+```
+
+### Increment and decrement float numbers
+- To increment and decrement float numbers, use INCRBYFLOAT command, provided the value of key should be integer or float parsable, also to decrement the value by X we have use -X.
+
+#### For Incrementing 
+```
+INCRBYFLOAT key X 
+```
+
+#### For Decrementing
+```
+INCRBYFLOAT key -X 
+```
+
+### To append string at the end of another existing string
+- To append string at the end of another existing string, use APPEND command. If the key exists then the string is appended and if the key does not exist then new key is created with the value to be append.
+
+```
+APPEND key "stringVal"
+```
+
+### To get the len of string
+- Use STRLEN to get the length of string
+```
+STRLEN key
+```
+
+### To set multiple keys and values
+- Use MSET command to set multiple keys and values, if there already exists a key, then MSET will override the value for that key.
+
+```
+MSET k1 v1 k2 v2 k3 v3
+```
+
+### To get multiple keys and values
+- Use MGET command to get multiple keys and values, if there is key that does not exist then MGET will return nil for that key.
+
+```
+MGET k1 k2 k3
+```
+
+### To set multiple keys and values, for the keys that does not exist
+- Use MSETNX command to set values for the keys that does not exist. MSETNX will not perform any operation at all even if just a single key already exists.
+
+```
+MSETNX k1 v1 k2 v2
+```
+
+### To get substring of a string
+- To get the substring of a string use GETRANGE command.
+
+```
+GETRANGE key startIndex endIndex
+```
+- startIndex <= endIndex
+- To get the whole string pass startIndex = 0 and endIndex = -1
+
+
+### To set the key with expiration
+- Setting the key with expiration in seconds
+```
+SETEX key number_of_seconds value
+```
+
+- Setting the key with expiration in milliseconds
+```
+PSETEX key number_of_milliseconds value
+```
+
+### Redis string encoding Types
+- `int` : For strings representing 64 bit signed integers.
+- `embstr` : For strings whose length is less or equal to 44 bytes this type of encoding is more efficient in memory usage and performance.
+- `raw` : For strings whose length is greater than 44 bytes.
+
+- To get the encoding type of a key, use below command
+```
+OBJECT ENCODING key
+```
