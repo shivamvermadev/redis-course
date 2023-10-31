@@ -255,3 +255,57 @@ PSETEX key number_of_milliseconds value
 ```
 OBJECT ENCODING key
 ```
+
+### To populate random keys
+```
+debug populate number_of_items
+```
+
+### Scanning Keys with SCAN
+- Scan reads the keys from starting by default.
+- Cursor starts with 0 by default.
+- 10 are the default records that are displayed by SCAN command.
+
+```
+SCAN cursor/page
+```
+- the above command will return the next cursor/page and the 10 keys by default.
+- If the number of records are exhausted, then the cursor to 0 is returned again.
+- To get the X number of records from SCAN command
+```
+SCAN cursor/page COUNT X
+```
+
+- To Get the matching keys use the below command
+```
+SCAN cursor/page MATCH pattern
+```
+
+---
+
+### REDIS HASHES
+- Hashes are list of fields and value pairs.
+- Hashes are schemaless. 
+- To create a hash and start adding values to it is via below command. If the hash does not exists then it is created at the time of adding values.
+
+```
+HSET hash key1 value1 key2 value2
+```
+
+- To get all the values from the hash
+```
+HGETALL hash
+```
+- To update the value in hash use the HSET command, it will override the value for that key.
+
+### To get multiple values from hashes
+- To get multiple values from hashes, we use the HMGET comamnd as below.
+
+```
+HMGET hash_name key1 key2
+```
+
+### HLEN To find the length of keys stored inside a hash
+```
+HLEN my_hash
+```
